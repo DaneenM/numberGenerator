@@ -100,12 +100,28 @@
         /* Saved Numbers Styles */
         .saved-number-item {
             margin: 5px 0;
-            padding: 10px;
+            padding: 10px 20px; /* Added padding to give space for the Unsave button */
             background-color: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
             font-size: 1.2rem;
             text-align: center;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between; /* Space between number and Unsave button */
+            align-items: center;
+        }
+        .unsave-btn {
+            background-color: #ff5e62;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 15px; /* Add margin to create space between the number and button */
+        }
+        .unsave-btn:hover {
+            background-color: #e0484f;
         }
 
         /* Mobile Friendly */
@@ -123,6 +139,13 @@
             }
             .save-btn {
                 padding: 6px 12px;
+            }
+            .saved-number-item {
+                padding: 10px 15px; /* Adjust padding for smaller screens */
+            }
+            .unsave-btn {
+                padding: 6px 12px;
+                margin-left: 10px; /* Adjust margin for smaller screens */
             }
         }
 

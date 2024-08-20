@@ -32,8 +32,8 @@ function generateNumbers() {
     numbers = [];
     while (numbers.length < 10) {
         let newNumber = generateRandomNumber();
-        // Ensure the number hasn't been used before
-        if (!numbers.includes(newNumber) && !usedNumbers.includes(newNumber)) {
+        // Ensure the number hasn't been used before and isn't currently saved
+        if (!numbers.includes(newNumber) && !usedNumbers.includes(newNumber) && !savedNumbers.includes(newNumber)) {
             numbers.push(newNumber);
         }
     }
@@ -97,6 +97,13 @@ function saveNumber(number) {
     }
 }
 
+// Function to unsave a number and remove it from localStorage
+function unsaveNumber(number) {
+    savedNumbers = savedNumbers.filter(saved => saved !== number);
+    localStorage.setItem('savedNumbers', JSON.stringify(savedNumbers));
+    renderSavedNumbers();
+}
+
 // Function to render the saved numbers list
 function renderSavedNumbers() {
     savedNumbersList.innerHTML = '';
@@ -104,6 +111,14 @@ function renderSavedNumbers() {
         const li = document.createElement('li');
         li.className = 'saved-number-item';
         li.textContent = number;
+
+        // Create Unsave Button
+        const unsaveButton = document.createElement('button');
+        unsaveButton.textContent = 'Unsave';
+        unsaveButton.className = 'unsave-btn';
+        unsaveButton.addEventListener('click', () => unsaveNumber(number));
+
+        li.appendChild(unsaveButton);
         savedNumbersList.appendChild(li);
     });
 }
